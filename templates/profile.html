@@ -1,0 +1,44 @@
+<!-- account/templates/account/profile.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Your Profile</title>
+</head>
+<body>
+<div class="container mt-5">
+    <h2 class="text-center">Your Profile</h2>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">{{ user_profile.first_name }} {{ user_profile.last_name }}</h5>
+            <p><strong>Email:</strong> {{ user_profile.user.email }}</p>
+            <p><strong>Weight:</strong> {{ user_profile.weight }} kg</p>
+            <p><strong>Height:</strong> {{ user_profile.height }} cm</p>
+            <p><strong>Blood Type:</strong> {{ user_profile.blood_type }}</p>
+            <p><strong>Availability:</strong> {% if user_profile.availability %} Available {% else %} Not Available {% endif %}</p>
+            <p><strong>Last Donation Date:</strong> {{ user_profile.last_donation_date }}</p>
+        </div>
+    </div>
+
+    <h4>Your Blood Donation Requests</h4>
+    {% if blood_donations %}
+        <ul class="list-group">
+            {% for donation in blood_donations %}
+                <li class="list-group-item">
+                    {{ donation.request_date }} - {{ donation.description }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No blood donation requests found.</p>
+    {% endif %}
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
